@@ -1,0 +1,126 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool three(int p, int a, int q, int b, int r, int c)
+{
+    int x = b - a;
+    int d = q - p;
+    if (d != 0)
+    {
+        long long int y = a - ( p * (x / d));
+        if (r * (x / d) + (y) == c) {
+            if ((x % d == 0)) {
+                return 1;
+            }
+        }
+        if ((x % d == 0) && r + y == c) {
+            return 1;
+            
+        }
+        if ((x % d == 0) && r * x == c) {
+            return 1;
+            
+        }
+    }
+    return 0;
+}
+
+
+bool two(int p, int a, int q, int b)
+{
+    if (p == a || q == b){
+        return 1;
+    }
+
+    if (a - p == b - q){
+        return 1;
+    }
+
+    if (p != 0 && q != 0 && a % p == 0 && b % q == 0 && a / p == b / q){
+        return 1;
+    }
+
+    return 0;
+}
+
+
+int ways(int p,int q,int r,int a,int b,int c) {
+    if (p == a && q == b && r == c) {
+        return 0;
+    }
+
+    if ((p == a && two(q, b, r, c)) || (q == b && two(p, a, r, c)) || (r == c && two(q, b, p, a)))
+    {
+        return 1;
+
+    }
+    long long int diff = a - p;
+    if (q + diff == b && r + diff == c) {
+        return 1;
+    }
+    if (p != 0 && a % p == 0) {
+        diff = a / p;
+        if (q * diff == b && r * diff == c) {
+            return 1;
+        }
+    }
+    long long int d = 0;
+
+    if (p != 0 && a % p == 0) {
+        d = a / p;
+        if (two(q * d, b, r * d, c) || two(q * d, b, r, c) || two(q, b, r * d, c) || two(q, b, r, c)) {
+            return 2;
+        }
+    }
+
+    d = a - p;
+    if (two(q + d, b, r + d, c) || two(q + d, b, r, c) || two(q, b, r + d, c) || two(q, b, r, c)) {
+        return 2;
+    }
+
+
+    if (q != 0 && b % q == 0) {
+        d = b / q;
+        if (two(p * d, a, r * d, c) || two(p * d, a, r, c) || two(p, a, r * d, c) || two(p, a, r, c)) {
+            return 2;
+        }
+    }
+
+    d = b - q;
+    if (two(p + d, a, r + d, c) || two(p + d, a, r, c) || two(p, a, r + d, c) || two(p, a, r, c)) {
+        return 2;
+    }
+
+    if (r != 0 && c % r == 0) {
+        d = c / r;
+        if (two(q * d, b, p * d, a) || two(q * d, b, p, a) || two(q, b, p * d, a) || two(q, b, p, a)) {
+            return 2;
+        }
+    }
+
+    d = c - r;
+    if (two(q + d, b, p + d, a) || two(q + d, b, p, a) || two(q, b, p + d, a) || two(q, b, p, a)) {
+        return 2;
+    }
+
+    if (three(p, a, q, b, r, c) || three(p, a, r, c, q, b) || three(q, b, r, c, p, a)) {
+        return 2;
+    }
+
+    return 3;
+}
+
+
+int32_t main()
+{
+    int t; 
+    cin >> t; 
+    while (t--)
+    {
+        int a,b,c;
+        int p,q,r;
+        cin>>p>>q>>r;
+        cin>>a>>b>>c;
+        cout<<ways(p,q,r,a,b,c)<<endl;
+       
+    }
+}
