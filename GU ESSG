@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+//FOR 15 MARKS SUBTASK 1
+int main()
+{
+    int n;
+    cin >> n;
+
+    int left1 = 1;int right1 = n;int left2 = 1; int right2 = n;
+
+    char x1;
+
+    int lvl = 1;
+
+    while (true)
+    {
+
+        if (lvl % 2 == 1) 
+        {
+            int mid = (left1 + right1) / 2;
+            cout << mid<<endl;
+            cin >> x1;
+            if (x1 == 'G'){
+                left1 = mid + 1;
+            }if (x1 == 'L')
+            {right1 = mid - 1;
+            }
+            if (x1 == 'E')
+            {
+                break;
+            }
+            lvl++;
+        }
+
+        else
+        {
+            int mid2 = (left2 + right2) / 2;cout << mid2<<endl;cin >> x1;if (x1 == 'G')
+            {left2 = mid2 + 1;
+            }
+            if (x1 == 'L')
+            {
+                right2 = mid2 - 1;
+            }
+            if (x1 == 'E')
+            {
+
+                break;
+            }lvl++;
+        }
+    }
+}
