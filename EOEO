@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long int ts;
+	    cin>>ts;
+	    if(ts%2!=0){
+	        long long int n=(ts-1)/2;
+	        if(ts%2!=0||1%2!=0){
+	            n++;
+	        }
+	        cout<<ts-n<<endl;
+	    }
+	    else{
+	        long long int helper=ts;
+	        while(helper%2==0){
+	            helper=helper/2;
+	        }
+	        long long int n1=(helper-1)/2;
+	        if(helper%2!=0||1%2!=0){
+	            n1++;
+	        }
+	        cout<<helper-n1<<endl;
+	    }
+	}
+	return 0;
+}
